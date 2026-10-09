@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Write Article — Postly" />
+  <title>Write Article — Postly</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/articles.css" />
+</head>
+<body class="write-article-page">
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header" role="banner">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Go back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    </button>
+    <div class="logo-text">Post<span>ly</span></div>
+    <div class="header-avatar" id="header-avatar" aria-label="Your profile" role="button" tabindex="0"
+      onclick="window.location.href='profile.html'">?</div>
+  </header>
+
+  <div class="app-wrapper">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left" aria-label="Main navigation">
+      <div class="sidebar-logo" role="banner">
+        <div class="logo-icon" aria-hidden="true">P</div>
+        <div class="logo-text">Post<span>ly</span></div>
+      </div>
+      <nav class="sidebar-nav" role="navigation" aria-label="Primary navigation">
+        <button class="nav-item" onclick="window.location.href='index.html'">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" onclick="window.location.href='articles.html'">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <span>Articles</span>
+        </button>
+        <button class="nav-item active" aria-current="page">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          <span>Write Article</span>
+        </button>
+        <button class="nav-item" onclick="window.location.href='profile.html'">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span>Profile</span>
+        </button>
+      </nav>
+      <div class="sidebar-user" onclick="window.location.href='profile.html'" role="button" tabindex="0">
+        <div class="user-avatar" id="sidebar-user-avatar">?</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-handle" id="sidebar-user-handle">@user</div>
+        </div>
+      </div>
+      <button class="sidebar-logout-btn" onclick="logout()" aria-label="Sign out">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content" role="main" style="margin-right:0">
+
+      <!-- Sticky header row -->
+      <div class="page-header">
+        <button class="back-btn" onclick="window.history.back()" aria-label="Go back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <div class="page-header-info">
+          <h1 id="editor-page-title">Write Article</h1>
+          <span id="editor-autosave-status" style="font-size:12px;color:var(--color-text-muted)">Draft</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-left:auto">
+          <button class="btn btn-outline" id="preview-btn" aria-label="Preview article" style="font-size:13px;padding:7px 14px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Preview
+          </button>
+          <button class="btn btn-primary" id="publish-article-btn" aria-label="Publish article" style="font-size:13px;padding:7px 16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Publish
+          </button>
+        </div>
+      </div>
+
+      <div class="article-editor-container">
+
+        <!-- Formatting toolbar -->
+        <div class="editor-toolbar" role="toolbar" aria-label="Formatting tools" id="editor-toolbar">
+          <button class="toolbar-btn" data-format="h2" title="Heading 2" aria-label="Heading 2">H2</button>
+          <button class="toolbar-btn" data-format="h3" title="Heading 3" aria-label="Heading 3">H3</button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button class="toolbar-btn" data-format="bold" title="Bold" aria-label="Bold"><strong>B</strong></button>
+          <button class="toolbar-btn" data-format="italic" title="Italic" aria-label="Italic"><em>I</em></button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button class="toolbar-btn" data-format="code" title="Inline code" aria-label="Inline code" style="font-family:monospace">`c`</button>
+          <button class="toolbar-btn" data-format="codeblock" title="Code block" aria-label="Code block" style="font-family:monospace;font-size:11px">```</button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <button class="toolbar-btn" data-format="bullet" title="Bullet list" aria-label="Bullet list">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+          <span class="toolbar-divider" aria-hidden="true"></span>
+          <div class="editor-word-count" id="word-count" aria-live="polite">0 words</div>
+        </div>
+
+        <!-- Cover image -->
+        <label class="editor-cover-upload" for="cover-image-input" id="cover-upload-label">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span style="font-size:15px;font-weight:600">Add a cover image</span>
+          <span style="font-size:13px">PNG, JPG up to 5MB — makes your article stand out</span>
+        </label>
+        <input type="file" id="cover-image-input" accept="image/*" style="display:none" aria-label="Upload cover image" />
+        <div class="editor-cover-preview" id="cover-preview">
+          <img id="cover-preview-img" src="" alt="Cover image preview" />
+          <button class="editor-cover-remove" id="cover-remove-btn" aria-label="Remove cover image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Title -->
+        <textarea id="editor-title" class="editor-title-input" placeholder="Article title..."
+          rows="1" maxlength="150" aria-label="Article title" aria-required="true"></textarea>
+
+        <!-- Subtitle -->
+        <textarea id="editor-subtitle" class="editor-subtitle-input" placeholder="Add a subtitle (optional)..."
+          rows="1" maxlength="220" aria-label="Article subtitle"></textarea>
+
+        <div class="editor-divider" aria-hidden="true"></div>
+
+        <!-- Content -->
+        <textarea id="editor-content" class="editor-content-input"
+          placeholder="Tell your story... Use ## for headings, **bold**, *italic*, `code`, and - for bullet lists."
+          aria-label="Article content" aria-required="true"></textarea>
+
+        <!-- Tags -->
+        <div class="editor-tags-section">
+          <label class="editor-tags-label" for="editor-tags">Tags</label>
+          <input type="text" id="editor-tags" class="editor-tags-input"
+            placeholder="#JavaScript, #WebDev, #Tech"
+            aria-label="Article tags, comma separated"
+            maxlength="200" />
+          <p class="editor-tags-hint">Separate tags with commas. Use # prefix for best results.</p>
+        </div>
+
+        <!-- Action row -->
+        <div class="editor-actions">
+          <div class="editor-actions-left">
+            <span class="editor-word-count" id="word-count-bottom" aria-live="polite">0 words</span>
+          </div>
+          <div class="editor-actions-right">
+            <button class="btn btn-outline" id="cancel-btn">Cancel</button>
+            <button class="btn btn-ghost" id="save-draft-btn">Save Draft</button>
+            <button class="btn btn-primary" id="publish-btn-bottom">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Publish Article
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <div class="bottom-nav-items">
+      <a class="bottom-nav-item" href="index.html"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>Home</span></a>
+      <a class="bottom-nav-item" href="articles.html"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span>Articles</span></a>
+      <a class="bottom-nav-item create-btn-mobile active" href="write-article.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></a>
+      <a class="bottom-nav-item" href="profile.html"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span>Profile</span></a>
+      <a class="bottom-nav-item" href="index.html"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span><span>Feed</span></a>
+    </div>
+  </nav>
+
+  <div id="toast-container" class="toast-container" role="region" aria-live="assertive"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/articles.js"></script>
+  <script>
+    requireAuth();
+
+    let editingArticleId = null;
+    let pendingCover     = null;
+    let autoSaveTimer    = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSampleData();
+      initializeArticles();
+      const currentUser = getCurrentUser();
+      setupUserUI(currentUser);
+      setupEditor(currentUser);
+      checkEditMode();
+    });
+
+    function setupUserUI(user) {
+      if (!user) return;
+      const initials = getInitials(user.displayName);
+      const color    = user.avatarColor || getAvatarColor(user.id);
+      const el = id => document.getElementById(id);
+      [el('header-avatar'), el('sidebar-user-avatar')].forEach(e => {
+        if (e) { e.textContent = initials; e.style.background = color; }
+      });
+      if (el('sidebar-user-name'))   el('sidebar-user-name').textContent = user.displayName;
+      if (el('sidebar-user-handle')) el('sidebar-user-handle').textContent = '@' + user.handle;
+    }
+
+    function checkEditMode() {
+      const params  = new URLSearchParams(window.location.search);
+      const editId  = params.get('edit');
+      if (!editId) return;
+      const article = getArticleById(editId);
+      if (!article) { showToast('Article not found', 'error'); return; }
+
+      editingArticleId = editId;
+      document.getElementById('editor-page-title').textContent = 'Edit Article';
+      document.getElementById('editor-title').value   = article.title;
+      document.getElementById('editor-subtitle').value = article.subtitle || '';
+      document.getElementById('editor-content').value  = article.content;
+      document.getElementById('editor-tags').value     = (article.tags || []).join(', ');
+
+      if (article.coverImage) {
+        pendingCover = article.coverImage;
+        document.getElementById('cover-preview-img').src = article.coverImage;
+        document.getElementById('cover-preview').classList.add('visible');
+        document.getElementById('cover-upload-label').style.display = 'none';
+      }
+
+      autoResize(document.getElementById('editor-title'));
+      autoResize(document.getElementById('editor-subtitle'));
+      autoResize(document.getElementById('editor-content'));
+      updateWordCount();
+    }
+
+    function setupEditor(currentUser) {
+      const titleEl    = document.getElementById('editor-title');
+      const subtitleEl = document.getElementById('editor-subtitle');
+      const contentEl  = document.getElementById('editor-content');
+      const coverInput = document.getElementById('cover-image-input');
+
+      // Auto-resize textareas
+      [titleEl, subtitleEl, contentEl].forEach(el => {
+        el.addEventListener('input', () => { autoResize(el); triggerAutoSave(); });
+      });
+      contentEl.addEventListener('input', updateWordCount);
+
+      // Cover image
+      coverInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          pendingCover = await readImageFile(file);
+          document.getElementById('cover-preview-img').src = pendingCover;
+          document.getElementById('cover-preview').classList.add('visible');
+          document.getElementById('cover-upload-label').style.display = 'none';
+          showToast('Cover image added', 'success', 2000);
+        } catch (err) { showToast(err.message, 'error'); }
+        coverInput.value = '';
+      });
+
+      document.getElementById('cover-remove-btn').addEventListener('click', () => {
+        pendingCover = null;
+        document.getElementById('cover-preview').classList.remove('visible');
+        document.getElementById('cover-preview-img').src = '';
+        document.getElementById('cover-upload-label').style.display = '';
+      });
+
+      // Toolbar formatting
+      document.getElementById('editor-toolbar').querySelectorAll('[data-format]').forEach(btn => {
+        btn.addEventListener('click', () => applyFormat(contentEl, btn.dataset.format));
+      });
+
+      // Publish buttons
+      const doPublish = () => publishArticle(currentUser, 'published');
+      document.getElementById('publish-article-btn').addEventListener('click', doPublish);
+      document.getElementById('publish-btn-bottom').addEventListener('click', doPublish);
+
+      // Save draft
+      document.getElementById('save-draft-btn').addEventListener('click', () => publishArticle(currentUser, 'draft'));
+
+      // Preview
+      document.getElementById('preview-btn').addEventListener('click', () => {
+        const titleVal = document.getElementById('editor-title').value.trim();
+        if (!titleVal) { showToast('Add a title first', 'warning'); return; }
+        // Save temp draft and open preview
+        const tempId = 'preview_temp';
+        const draftData = buildArticleData(currentUser, 'draft');
+        draftData.id = tempId;
+        saveArticle(draftData);
+        window.open(`article.html?id=${tempId}&preview=1`, '_blank');
+      });
+
+      // Cancel
+      document.getElementById('cancel-btn').addEventListener('click', () => {
+        if (window.history.length > 1) window.history.back();
+        else window.location.href = 'articles.html';
+      });
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+    }
+
+    function updateWordCount() {
+      const content = document.getElementById('editor-content').value;
+      const words   = content.trim() ? content.trim().split(/\s+/).length : 0;
+      const text    = `${words} word${words !== 1 ? 's' : ''}`;
+      document.getElementById('word-count').textContent = text;
+      document.getElementById('word-count-bottom').textContent = text;
+    }
+
+    function triggerAutoSave() {
+      clearTimeout(autoSaveTimer);
+      document.getElementById('editor-autosave-status').textContent = 'Saving...';
+      autoSaveTimer = setTimeout(() => {
+        document.getElementById('editor-autosave-status').textContent = 'Draft saved';
+      }, 1500);
+    }
+
+    function applyFormat(textarea, format) {
+      const start = textarea.selectionStart;
+      const end   = textarea.selectionEnd;
+      const sel   = textarea.value.slice(start, end);
+      const pre   = textarea.value.slice(0, start);
+      const post  = textarea.value.slice(end);
+
+      const formats = {
+        h2:        { prefix: '\n## ', suffix: '\n',   wrap: false },
+        h3:        { prefix: '\n### ', suffix: '\n',  wrap: false },
+        bold:      { prefix: '**',    suffix: '**',   wrap: true  },
+        italic:    { prefix: '*',     suffix: '*',    wrap: true  },
+        code:      { prefix: '`',     suffix: '`',    wrap: true  },
+        codeblock: { prefix: '\n```\n', suffix: '\n```\n', wrap: true },
+        bullet:    { prefix: '\n- ',  suffix: '',     wrap: false },
+      };
+
+      const f = formats[format];
+      if (!f) return;
+
+      let newText, cursorPos;
+      if (f.wrap && sel) {
+        newText   = pre + f.prefix + sel + f.suffix + post;
+        cursorPos = start + f.prefix.length + sel.length + f.suffix.length;
+      } else {
+        const insert = f.prefix + (sel || 'text here') + f.suffix;
+        newText   = pre + insert + post;
+        cursorPos = start + insert.length;
+      }
+
+      textarea.value = newText;
+      textarea.focus();
+      textarea.setSelectionRange(cursorPos, cursorPos);
+      autoResize(textarea);
+      updateWordCount();
+    }
+
+    function buildArticleData(currentUser, status) {
+      const title    = document.getElementById('editor-title').value.trim();
+      const subtitle = document.getElementById('editor-subtitle').value.trim();
+      const content  = document.getElementById('editor-content').value.trim();
+      const tagsRaw  = document.getElementById('editor-tags').value;
+      const tags     = tagsRaw.split(',')
+        .map(t => t.trim())
+        .filter(Boolean)
+        .map(t => t.startsWith('#') ? t : '#' + t)
+        .slice(0, 8);
+
+      return {
+        id:          editingArticleId || generateId('a'),
+        authorId:    currentUser.id,
+        title,
+        subtitle,
+        content,
+        coverImage:  pendingCover || null,
+        tags,
+        likes:       editingArticleId ? (getArticleById(editingArticleId)?.likes || 0) : 0,
+        comments:    editingArticleId ? (getArticleCommentsByArticle(editingArticleId).length) : 0,
+        views:       editingArticleId ? (getArticleById(editingArticleId)?.views || 0) : 0,
+        readTime:    estimateReadTime(content),
+        createdAt:   editingArticleId ? (getArticleById(editingArticleId)?.createdAt || new Date().toISOString()) : new Date().toISOString(),
+        updatedAt:   new Date().toISOString(),
+        status,
+      };
+    }
+
+    function publishArticle(currentUser, status) {
+      const title   = document.getElementById('editor-title').value.trim();
+      const content = document.getElementById('editor-content').value.trim();
+
+      if (!title)   { showToast('Please add a title', 'warning'); document.getElementById('editor-title').focus(); return; }
+      if (!content) { showToast('Please write some content', 'warning'); document.getElementById('editor-content').focus(); return; }
+
+      const btn = document.getElementById('publish-article-btn');
+      btn.textContent = status === 'published' ? 'Publishing...' : 'Saving...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        const article = buildArticleData(currentUser, status);
+        saveArticle(article);
+
+        if (status === 'published') {
+          showToast('Article published!', 'success');
+          setTimeout(() => window.location.href = `article.html?id=${article.id}`, 800);
+        } else {
+          showToast('Draft saved', 'info', 2000);
+          document.getElementById('editor-autosave-status').textContent = 'Saved as draft';
+          btn.textContent = 'Publish';
+          btn.disabled = false;
+        }
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
