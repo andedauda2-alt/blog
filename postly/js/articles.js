@@ -32,7 +32,12 @@ function saveArticle(article) {
   } else {
     articles.unshift(article);
   }
-  saveArticles(articles);
+  try {
+    saveArticles(articles);
+  } catch (e) {
+    console.error('saveArticle failed — localStorage may be full:', e);
+    throw e; // Re-throw so publishArticle catch block can handle it
+  }
 }
 
 function deleteArticle(id) {
@@ -97,7 +102,8 @@ function deleteArticleComment(commentId) {
 
 /* ---- Reading time estimate ---- */
 function estimateReadTime(content) {
-  const words = content.trim().split(/\s+/).length;
+  if (!content || !content.trim()) return '1 min read';
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / 200));
   return `${minutes} min read`;
 }
