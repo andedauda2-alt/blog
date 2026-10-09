@@ -471,6 +471,447 @@ The best engineers I've worked with have been almost invisible in their impact �
   },
 ];
 
+  {
+    id: 'a6',
+    authorId: '5',
+    title: 'Building AI-Powered Web Apps: A Practical Guide for Developers',
+    subtitle: 'From API keys to production — how to integrate AI into your web applications without losing your mind',
+    coverImage: null,
+    content: `Artificial intelligence has gone from a research novelty to a practical tool you can integrate into a web app in an afternoon. But the gap between a demo and a production-ready AI feature is wider than most tutorials admit.
+
+## Getting Started: Picking Your Integration Layer
+
+Most developers building AI-powered web features today are working with one of three approaches:
+
+**1. Direct API calls to a foundation model**
+You call OpenAI, Anthropic, Google, or similar directly from your backend. Simple to start, but you're responsible for rate limiting, error handling, cost control, and prompt management.
+
+**2. An AI SDK or framework**
+Libraries like LangChain, LlamaIndex, or Vercel's AI SDK abstract away the raw API calls. They add structure for chains, agents, memory, and retrieval. Useful once your use case gets complex.
+
+**3. A hosted AI service**
+Tools like Supabase AI, Firebase Extensions, or AWS Bedrock handle infrastructure for you. Great for teams that don't want to manage AI plumbing.
+
+For most web developers starting out, approach one is the right entry point. Get familiar with the raw capabilities before adding abstraction layers.
+
+## The Architecture of a Real AI Feature
+
+Let's say you're building a "summarize this article" button for a blogging platform. Here's what the real architecture looks like:
+
+### Frontend
+- User clicks "Summarize"
+- A POST request goes to your own backend (never call AI APIs directly from the browser — you'll expose your API key)
+- Show a loading state. AI responses take 1–10 seconds.
+- Stream the response if the API supports it — users drop off if they stare at a spinner for 5 seconds
+
+### Backend
+- Validate the request (auth, rate limiting, content length)
+- Build the prompt — include the article content, instructions, and output format
+- Call the AI API
+- Handle errors: timeouts, rate limits, content policy rejections, malformed responses
+- Log the request and response (you'll need this for debugging and cost tracking)
+- Return the result
+
+### Prompt Engineering for Production
+Your system prompt is part of your product. It needs the same care as your code:
+
+```
+System: You are a summarization assistant for a professional blogging platform.
+Summarize the following article in 3 bullet points.
+Each bullet should be one concise sentence.
+Do not include opinions or commentary.
+Output only the bullet points, no introduction.
+```
+
+Specific instructions produce consistent results. Vague prompts produce vague outputs.
+
+## Handling the Hard Problems
+
+### Cost Control
+AI API calls cost money per token. A single careless prompt can cost more than your entire database bill. Implement:
+- Per-user rate limits
+- Input length limits (truncate long documents before sending)
+- Response length limits via `max_tokens`
+- Usage monitoring and alerts
+
+### Latency
+AI responses are slow. 2–8 seconds for a typical completion. Solutions:
+- Stream responses to show partial output immediately
+- Use smaller/faster models for latency-sensitive features
+- Cache common queries (be careful with user-specific data)
+- Show meaningful loading states — progress indicators, not just spinners
+
+### Failure Handling
+AI APIs fail. They return errors, time out, refuse requests due to content policy, or return garbled output. Your app needs to handle all of these gracefully:
+
+```javascript
+try {
+  const result = await callAI(prompt);
+  return parseAndValidate(result);
+} catch (error) {
+  if (error.status === 429) {
+    return { error: 'Too many requests, please try again in a moment.' };
+  }
+  if (error.status === 503) {
+    return { error: 'AI service temporarily unavailable.' };
+  }
+  logger.error('AI call failed', { error, prompt: prompt.slice(0, 100) });
+  return { error: 'Something went wrong. Please try again.' };
+}
+```
+
+## Streaming Responses
+
+Streaming is the single biggest UX improvement you can make for AI features. Instead of waiting for the full response, users see text appearing word by word — like watching someone type.
+
+Most major AI APIs support Server-Sent Events (SSE) for streaming. Your backend streams the chunks, your frontend updates the DOM as each chunk arrives.
+
+The result feels fast even when the total generation time is 5+ seconds.
+
+## Testing AI Features
+
+Testing non-deterministic systems is genuinely hard. A few approaches that work:
+
+- **Mock the AI API** in unit tests — test your parsing, error handling, and UI logic without real API calls
+- **Snapshot test outputs** — run the same prompt multiple times, flag significant divergence
+- **Evaluate on a golden set** — a collection of inputs with known expected outputs you manually verify
+- **A/B test prompts** — small prompt changes can have large impact on quality
+
+## The Developer's Responsibility
+
+AI features can produce harmful, incorrect, or biased outputs. As the developer, you're responsible for:
+- Not using AI for decisions with serious consequences without human review
+- Telling users when they're interacting with AI
+- Building content moderation into AI-generated content pipelines
+- Not storing user inputs to AI features without consent
+
+The technology is powerful. Use it thoughtfully.`,
+    tags: ['#AI', '#WebDev', '#JavaScript', '#API'],
+    likes: 234,
+    comments: 31,
+    views: 2900,
+    readTime: '9 min read',
+    createdAt: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString(),
+    status: 'published',
+  },
+  {
+    id: 'a7',
+    authorId: '3',
+    title: 'The Modern Web Developer\'s Toolkit in 2026',
+    subtitle: 'What to learn, what to skip, and what actually matters when building for the web today',
+    coverImage: null,
+    content: `The web development landscape moves fast. New frameworks appear monthly, AI tools are rewriting workflows, and the fundamentals remain stubbornly relevant. This is my attempt at a honest map of what actually matters in 2026.
+
+## The Unchanged Foundations
+
+Before anything else: HTML, CSS, and JavaScript. Not because they're exciting, but because everything else is built on top of them. A developer who deeply understands the fundamentals can pick up any framework in days. A developer who skipped the fundamentals to jump straight to a framework is fragile.
+
+**HTML** — Semantic markup, accessibility attributes, forms, and the structure of a document. Most developers underestimate how much correct HTML matters for performance, SEO, and accessibility.
+
+**CSS** — Custom properties, flexbox, grid, cascade, specificity, and responsive design. CSS is a complete design system language. Learn it properly.
+
+**JavaScript** — The event loop, closures, promises, async/await, DOM manipulation, and the module system. These are not optional.
+
+## The Essential Frontend Stack
+
+In 2026, a productive frontend developer typically works with:
+
+**A component framework** — React remains dominant by usage. Vue and Svelte are excellent alternatives. The concepts transfer between them. Pick one, go deep.
+
+**TypeScript** — Type safety is no longer optional on any serious project. TypeScript catches entire categories of bugs before they reach production. The learning curve is 2 weeks, the payoff is permanent.
+
+**A build tool** — Vite has become the default. Fast development server, excellent plugin ecosystem, sensible defaults.
+
+**A CSS approach** — CSS Modules, Tailwind, or styled-components depending on team preference. The most important thing is consistency.
+
+## The Backend Reality
+
+Full-stack JavaScript (Node.js) is a legitimate career path. But knowing when to reach for a different tool matters:
+
+**Node.js / Express / Fastify** — Great for APIs, real-time features, and teams that want to share code between frontend and backend.
+
+**Python** — Dominates AI/ML workloads. If you're building AI features, you'll work with Python.
+
+**Edge functions** — Cloudflare Workers, Vercel Edge Functions, and similar. Running JavaScript at the network edge, close to users. Excellent for low-latency use cases.
+
+**Serverless** — AWS Lambda, Google Cloud Functions. Pay-per-use, scales to zero, minimal infrastructure management. Good for most web apps.
+
+## Databases Worth Knowing
+
+**PostgreSQL** — The most capable open-source relational database. JSON support, full-text search, and rock-solid reliability. Default choice for most applications.
+
+**SQLite** — Underrated for web apps. Runs in-process, zero configuration, and excellent for edge deployments via Cloudflare D1 and similar.
+
+**Redis** — In-memory data store. Session storage, caching, rate limiting, pub/sub. Every production app eventually reaches for Redis.
+
+**Vector databases** — Pinecone, pgvector (PostgreSQL extension), Chroma. Necessary for AI features that do semantic search or RAG.
+
+## AI Tools That Actually Change Your Workflow
+
+This is where 2026 genuinely differs from 2022:
+
+**Code completion** — GitHub Copilot, Cursor, or similar. These are not optional anymore. They handle boilerplate, generate tests, explain unfamiliar code. A developer not using them is working harder than necessary.
+
+**AI-assisted debugging** — Pasting an error message into a good language model often surfaces the fix instantly. This doesn't replace understanding — you still need to evaluate the suggestion.
+
+**Documentation generation** — AI is excellent at writing first-draft documentation, JSDoc comments, and README files. Still needs human review, but the first draft is free.
+
+**Testing** — Generating test cases for a function is one of AI's strongest use cases. Describe the function, get a test suite.
+
+## What to Skip (For Now)
+
+**Microservices** — Only relevant when you have genuine scale problems and a team large enough to manage the complexity. Start with a well-structured monolith.
+
+**Kubernetes** — If you're not managing hundreds of containers, this is not your problem. Use a managed platform (Vercel, Railway, Fly.io, Heroku) and ship product instead.
+
+**The latest framework** — New frameworks announce themselves with benchmarks and promises every quarter. Unless your current tool has a genuine problem, switching costs are not worth the novelty.
+
+## The Skills That Compound
+
+Beyond specific technologies, the skills that compound over a developer career:
+
+- **Reading and understanding unfamiliar code** — you'll spend more time reading than writing
+- **Debugging systematically** — forming hypotheses, testing them, narrowing scope
+- **Communicating technical decisions** — writing clear docs, making coherent arguments
+- **Estimating work accurately** — the skill that makes you trustworthy to non-technical stakeholders
+- **Knowing when to stop** — shipping something imperfect beats perfecting something that never ships
+
+The tools will change. These skills are permanent.`,
+    tags: ['#WebDev', '#JavaScript', '#Career', '#Frontend'],
+    likes: 189,
+    comments: 27,
+    views: 2400,
+    readTime: '8 min read',
+    createdAt: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString(),
+    status: 'published',
+  },
+  {
+    id: 'a8',
+    authorId: '5',
+    title: 'AI Agents Explained: What They Are and How to Build One',
+    subtitle: 'Beyond chatbots — understanding the architecture of autonomous AI systems',
+    coverImage: null,
+    content: `Everyone is talking about AI agents. The term gets applied to everything from a simple chatbot to a fully autonomous system that browses the web, writes code, and deploys applications. Most of what's marketed as "agents" is neither of those. Let's define the term and then build something real.
+
+## What Is an AI Agent?
+
+An AI agent is a system where a language model can take actions in the world — not just generate text, but actually do things. The minimal definition requires:
+
+1. **A model** — the reasoning engine (GPT-4, Claude, Gemini, etc.)
+2. **Tools** — functions the model can call (search the web, run code, query a database)
+3. **A loop** — the model runs, decides what to do, calls a tool, observes the result, then runs again
+
+The key difference from a standard LLM call: the model drives the flow. You don't script every step. You give the model a goal and let it figure out the steps.
+
+## The ReAct Pattern
+
+The most widely used agent architecture is ReAct (Reasoning + Acting). The model alternates between:
+
+- **Thought**: "I need to find the current price of this stock. I should use the web search tool."
+- **Action**: `search("AAPL stock price today")`
+- **Observation**: `"Apple Inc. (AAPL) $187.42 +0.32%"`
+- **Thought**: "I have the price. I can now answer the question."
+- **Answer**: "Apple's current stock price is $187.42."
+
+This loop continues until the model decides it has enough information to answer.
+
+## Building a Simple Agent in JavaScript
+
+Here's a minimal agent that can search the web and run calculations:
+
+```javascript
+async function runAgent(goal, tools, maxIterations = 10) {
+  const messages = [
+    { role: 'system', content: buildSystemPrompt(tools) },
+    { role: 'user', content: goal }
+  ];
+
+  for (let i = 0; i < maxIterations; i++) {
+    const response = await callLLM(messages);
+
+    // If the model is done, return its answer
+    if (response.finishReason === 'stop') {
+      return response.content;
+    }
+
+    // If the model wants to call a tool
+    if (response.toolCall) {
+      const { name, args } = response.toolCall;
+      const tool = tools.find(t => t.name === name);
+
+      if (!tool) {
+        messages.push({ role: 'tool', content: `Error: tool "${name}" not found` });
+        continue;
+      }
+
+      const result = await tool.execute(args);
+      messages.push({ role: 'tool', content: JSON.stringify(result) });
+    }
+  }
+
+  return 'Agent reached maximum iterations without completing the task.';
+}
+```
+
+The real complexity is in the system prompt, tool definitions, and error handling — but the core loop is this simple.
+
+## Designing Good Tools
+
+Tools are the interface between the model and the world. A few principles:
+
+**Give tools clear names and descriptions.** The model uses the description to decide whether to call a tool. "search_web" with a description of "Search the internet for current information" is better than "tool_1".
+
+**Return structured data.** JSON is easier for the model to reason about than unstructured text. Include metadata — source URL, timestamp, confidence — not just the raw result.
+
+**Make tools idempotent where possible.** If a tool call fails and gets retried, it shouldn't cause side effects twice. This matters for tools that write data.
+
+**Limit scope.** A tool that does one thing well is better than a multi-function tool. The model can chain simple tools; it gets confused by complex ones.
+
+## The Hard Problems in Agent Systems
+
+### Reliability
+Agents are non-deterministic. The same goal can produce different tool call sequences on different runs. For production systems, you need:
+- Timeouts and iteration limits
+- Fallback behaviors when tools fail
+- Human approval gates for irreversible actions
+
+### Cost
+Agents make multiple LLM calls per task. A task that requires 5 tool calls might use 5x the tokens of a simple completion. Monitor costs carefully.
+
+### Hallucinated Tool Calls
+Models sometimes call tools with made-up arguments, or claim a tool returned something it didn't. Validate all tool inputs and outputs. Don't trust the model's representation of what a tool returned — use the actual return value.
+
+### Memory
+By default, agents have no memory between conversations. For agents that need to remember user preferences or past actions, you need to build a memory layer — typically a vector database for semantic retrieval.
+
+## When Agents Make Sense
+
+Agents are genuinely powerful for:
+- **Research tasks** — gather information from multiple sources, synthesize
+- **Code generation with testing** — write code, run tests, fix failures, repeat
+- **Data processing pipelines** — extract, transform, validate data across formats
+- **Customer service automation** — look up orders, check inventory, process returns
+
+They're overkill for:
+- Simple question answering (use a standard RAG pipeline)
+- Tasks with a fixed, known sequence of steps (use a scripted workflow)
+- High-stakes decisions (always add human review)
+
+The right question is not "can I use an agent?" but "does this task require dynamic decision-making that I can't anticipate in advance?"
+
+## The Future of Web Apps With Agents
+
+The integration of agents into web applications is still early. The patterns are settling. What's clear is that web developers who understand how to build, evaluate, and deploy agent systems will have a significant advantage as these capabilities become expected features rather than novelties.
+
+Start small. Build a single-tool agent. Add complexity only when the simple version breaks.`,
+    tags: ['#AI', '#Agents', '#JavaScript', '#WebDev'],
+    likes: 301,
+    comments: 44,
+    views: 3600,
+    readTime: '10 min read',
+    createdAt: new Date(Date.now() - 6 * 24 * 3600 * 1000).toISOString(),
+    status: 'published',
+  },
+  {
+    id: 'a9',
+    authorId: '1',
+    title: 'Full-Stack JavaScript in 2026: What the Stack Actually Looks Like',
+    subtitle: 'React, Node, databases, deployment — a realistic picture of how modern web apps are built',
+    coverImage: null,
+    content: `"Full-stack JavaScript developer" was once considered a shortcut — someone who could do a bit of everything but master nothing. That perception has flipped. The modern JavaScript full-stack is a genuinely powerful and productive way to build web applications, and the ecosystem has matured enough that you can go from idea to production with a single language throughout.
+
+## The Frontend
+
+The React ecosystem dominates modern web frontends. Not because it's perfect, but because it has the largest community, the most tooling, and the widest job market.
+
+A modern React application in 2026 looks like this:
+
+**Component model**: Functional components with hooks. Class components are legacy.
+
+**State management**: For most apps, React's built-in `useState` and `useContext` are enough. For complex shared state, Zustand has largely replaced Redux for new projects — less boilerplate, same power.
+
+**Data fetching**: React Query (TanStack Query) has become the standard for server-state management. It handles caching, refetching, loading states, and error boundaries in a way that's genuinely hard to replicate by hand.
+
+**Routing**: React Router v6 or Next.js file-based routing. The mental model of nested routes took getting used to, but it's now idiomatic.
+
+**Styling**: Tailwind CSS has won the utility-first debate. Component libraries like shadcn/ui (unstyled, composable) have replaced heavier UI kits for new projects.
+
+## The Backend
+
+Node.js on the backend means one language, one mental model, and shared types between frontend and backend when you use TypeScript.
+
+**Express** remains the most-used Node framework by volume, but **Fastify** has grown significantly for new projects — better performance, built-in TypeScript support, and a plugin system that scales well.
+
+**tRPC** deserves a special mention. It creates type-safe API connections between your frontend and backend with zero code generation. If you're building a TypeScript monorepo with React on the frontend and Node on the backend, tRPC eliminates an entire category of type-mismatch bugs.
+
+For teams that need it, **Next.js API routes** and **server actions** blur the frontend/backend boundary even further — you write server-side code directly alongside your React components.
+
+## The Database Layer
+
+**Prisma** has become the default ORM for Node.js applications. Type-safe queries, auto-generated types from your schema, and excellent migration tooling.
+
+For the database itself: **PostgreSQL** is the safe, powerful default. **SQLite** via Turso or Cloudflare D1 is an interesting option for edge deployments. **PlanetScale** and **Supabase** offer managed PostgreSQL with developer-friendly APIs.
+
+A typical stack:
+- Prisma as the query layer
+- PostgreSQL (hosted on Supabase, Railway, or Neon) as the database
+- Redis (Upstash for serverless) for caching and rate limiting
+
+## Authentication
+
+Rolling your own auth in 2026 is almost always the wrong call. The libraries are battle-tested:
+
+- **NextAuth.js / Auth.js** — Works with Next.js and other frameworks. Supports dozens of OAuth providers plus email magic links.
+- **Clerk** — Hosted auth with beautiful pre-built UI. Fast to set up, handles edge cases you'll forget to think about.
+- **Supabase Auth** — If you're already on Supabase, their built-in auth is well-integrated.
+
+## Deployment
+
+The deployment story for JavaScript full-stack apps has gotten genuinely good:
+
+**Vercel** — Optimized for Next.js but works with any frontend. Edge functions, preview deployments, analytics. The easiest path for most apps.
+
+**Railway** — Full-stack deployment including databases and background workers. Docker support. Excellent developer experience.
+
+**Fly.io** — More control, global deployment, persistent volumes. Good for apps that need to run long-running processes.
+
+**Cloudflare Workers** — Edge computing with minimal cold start latency. Integrates with D1 (SQLite), KV, and R2 (object storage).
+
+## TypeScript End-to-End
+
+The biggest quality-of-life improvement in modern full-stack JavaScript is TypeScript throughout. When your database schema, API routes, and React components share the same types:
+
+- Renaming a field in the database propagates type errors all the way to the UI
+- You can't accidentally send the wrong shape of data to an API endpoint
+- Refactors that once took a day now take minutes
+
+The setup investment is real but it compounds dramatically over the life of a project.
+
+## What a Real Project Looks Like
+
+A realistic production app today might be:
+
+- Next.js for the frontend and API routes
+- TypeScript throughout
+- Prisma + PostgreSQL (Supabase) for data
+- Auth.js for authentication
+- React Query for client-side data fetching
+- Tailwind + shadcn/ui for styling
+- Deployed to Vercel
+- Background jobs via Inngest or Trigger.dev
+- AI features via the Vercel AI SDK
+
+This stack can be set up in an afternoon and can scale to millions of users with thoughtful engineering. It's genuinely a good time to be building on the web.`,
+    tags: ['#WebDev', '#JavaScript', '#React', '#NodeJS', '#FullStack'],
+    likes: 156,
+    comments: 23,
+    views: 1980,
+    readTime: '8 min read',
+    createdAt: new Date(Date.now() - 9 * 24 * 3600 * 1000).toISOString(),
+    status: 'published',
+  },
+];
+
 const SAMPLE_ARTICLE_COMMENTS = [
   { id: 'ac1', articleId: 'a1', authorId: '1', text: 'The point about premature optimization vs scalability mindset is exactly the balance most teams struggle to find. Really well articulated.', createdAt: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString() },
   { id: 'ac2', articleId: 'a1', authorId: '2', text: 'The statelessness section should be required reading for every backend developer joining a team. Great breakdown.', createdAt: new Date(Date.now() - 1.5 * 24 * 3600 * 1000).toISOString() },
@@ -480,14 +921,44 @@ const SAMPLE_ARTICLE_COMMENTS = [
   { id: 'ac6', articleId: 'a4', authorId: '3', text: 'Custom properties as the foundation is the right call every time. The cascade section is also something more CSS developers need to internalize.', createdAt: new Date(Date.now() - 9 * 24 * 3600 * 1000).toISOString() },
   { id: 'ac7', articleId: 'a5', authorId: '4', text: 'The part about hoarding context to stay indispensable hits close to home. Have worked with people like that and it genuinely damages team performance.', createdAt: new Date(Date.now() - 13 * 24 * 3600 * 1000).toISOString() },
   { id: 'ac8', articleId: 'a5', authorId: '3', text: 'Being almost invisible in your impact is a wonderful way to describe the best senior engineers. Bookmarking this one.', createdAt: new Date(Date.now() - 12 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac9',  articleId: 'a6', authorId: '3', text: 'The section on streaming responses is the most practical advice I have seen on AI UX. Switching from spinners to streaming changed our retention on that feature immediately.', createdAt: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac10', articleId: 'a6', authorId: '4', text: 'Cost control is criminally under-discussed in AI tutorials. We got an unexpected bill before we put rate limits in. Do not skip that section.', createdAt: new Date(Date.now() - 0.5 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac11', articleId: 'a7', authorId: '2', text: 'Finally someone said it — TypeScript is not optional anymore. The number of teams still debating this in 2026 is baffling.', createdAt: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac12', articleId: 'a7', authorId: '5', text: 'The skills that compound section should be printed and pinned above every junior developer desk. The tools change. Those skills do not.', createdAt: new Date(Date.now() - 2.5 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac13', articleId: 'a8', authorId: '1', text: 'The ReAct pattern explanation finally made agents click for me. Every other explanation I read started with the philosophy. This one started with the loop.', createdAt: new Date(Date.now() - 5 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac14', articleId: 'a8', authorId: '4', text: 'Hallucinated tool calls are a real production problem nobody warns you about. Learned this the hard way before I read this.', createdAt: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac15', articleId: 'a9', authorId: '5', text: 'tRPC deserves way more attention than it gets. Type-safe end-to-end without code generation is genuinely a superpower once you have used it.', createdAt: new Date(Date.now() - 8 * 24 * 3600 * 1000).toISOString() },
+  { id: 'ac16', articleId: 'a9', authorId: '3', text: 'This is the stack I recommend to every team starting a new project in 2026. The combination of Next.js, Prisma, and Supabase is genuinely the sweet spot.', createdAt: new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString() },
 ];
 
 /* ---- Initialize articles on first load ---- */
 function initializeArticles() {
-  if (localStorage.getItem(ARTICLE_KEYS.ARTICLES_INIT) === 'true') return;
-  saveArticles(SAMPLE_ARTICLES);
-  saveArticleLikes({});
-  saveArticleComments(SAMPLE_ARTICLE_COMMENTS);
+  // Version key — bump this string any time new sample articles are added
+  const CURRENT_VERSION = 'v2';
+  const storedVersion   = localStorage.getItem('postly_articles_version');
+
+  if (storedVersion === CURRENT_VERSION) return; // Already up to date
+
+  if (storedVersion === null) {
+    // Fresh install — seed everything
+    saveArticles(SAMPLE_ARTICLES);
+    saveArticleLikes({});
+    saveArticleComments(SAMPLE_ARTICLE_COMMENTS);
+  } else {
+    // Existing install — merge in any new articles and comments
+    const existing    = getArticles();
+    const existingIds = new Set(existing.map(a => a.id));
+    const newArticles = SAMPLE_ARTICLES.filter(a => !existingIds.has(a.id));
+    if (newArticles.length) saveArticles([...newArticles, ...existing]);
+
+    const existingComments    = getArticleComments();
+    const existingCommentIds  = new Set(existingComments.map(c => c.id));
+    const newComments         = SAMPLE_ARTICLE_COMMENTS.filter(c => !existingCommentIds.has(c.id));
+    if (newComments.length) saveArticleComments([...existingComments, ...newComments]);
+  }
+
+  // Mark as current version
+  localStorage.setItem('postly_articles_version', CURRENT_VERSION);
   localStorage.setItem(ARTICLE_KEYS.ARTICLES_INIT, 'true');
 }
 
