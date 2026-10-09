@@ -224,3 +224,63 @@ function addNotification(notif) {
   if (notifs.length > 50) notifs.length = 50; // cap at 50
   saveNotifications(notifs);
 }
+
+/* ---- Auth helpers ---- */
+
+/**
+ * Save a hashed-ish password for a user.
+ * NOTE: This is a frontend demo only — not real security.
+ * We store a simple checksum, never the plain password.
+ */
+function saveCredentials(credentials) {
+  saveData('postly_credentials', credentials);
+}
+
+function getCredentials() {
+  return getData('postly_credentials', {});
+}
+
+/**
+ * Naive hash — turns a string into a number string.
+ * Good enough to avoid storing plain text in LocalStorage for demo purposes.
+ */
+function hashPassword(password) {
+  let hash = 5381;
+  for (let i = 0; i < password.length; i++) {
+    hash = ((hash << 5) + hash) + password.charCodeAt(i);
+    hash = hash & hash; // Convert to 32-bit int
+  }
+  return String(Math.abs(hash));
+}
+
+function registerUser(user, password) {
+  // Save user profile
+  const users = getUsers();
+  users.push(user);
+  saveUsers(users);
+
+  // Save hashed password keyed by handle
+  const creds = getCredentials();
+  creds[user.handle] = hashPassword(password);
+  saveCredentials(creds);
+}
+
+function loginUser(handle, password) {
+  const creds = getCredentials();
+  const users = getUsers();
+  const user  = users.find(u => u.handle.toLowerCase() === handle.toLowerCase().trim());
+  if (!user) return { success: false, error: 'No account found with that username.' };
+  if (creds[user.handle] !== hashPassword(password)) {
+    return { success: false, error: 'Incorrect password.' };
+  }
+  saveCurrentUser(user);
+  return { success: true, user };
+}
+
+function logoutUser() {
+  localStorage.removeItem('postly_current_user');
+}
+
+function isLoggedIn() {
+  return getCurrentUser() !== null;
+}

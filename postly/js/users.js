@@ -215,8 +215,8 @@ function initializeSampleData() {
   saveLikes({});
   saveReposts({});
 
-  // Set default current user
-  saveCurrentUser(SAMPLE_USERS[0]);
+  // Do NOT set a default current user — auth pages handle login now.
+  // (Old sessions that still have a currentUser in storage will continue to work.)
 
   markInitialized();
 }

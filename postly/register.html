@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your Postly account" />
+  <title>Create Account — Postly</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body class="auth-page">
+
+  <div class="auth-card" role="main" style="max-width:480px">
+
+    <!-- Logo -->
+    <div class="auth-logo">
+      <div class="logo-icon">P</div>
+      <div class="logo-text">Post<span>ly</span></div>
+    </div>
+
+    <h1 class="auth-title">Create your account</h1>
+    <p class="auth-subtitle">Join Postly and start sharing ideas</p>
+
+    <!-- Error banner -->
+    <div class="auth-error-banner" id="reg-error" role="alert" aria-live="assertive">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <span id="reg-error-text"></span>
+    </div>
+
+    <!-- Avatar preview -->
+    <div class="avatar-preview-wrap" aria-live="polite" aria-label="Avatar preview">
+      <div class="avatar-preview" id="avatar-preview" style="background:#6c63ff" aria-hidden="true">?</div>
+      <div class="avatar-preview-info">
+        <strong id="avatar-preview-name" style="display:block;color:var(--color-text-primary)">Your Name</strong>
+        <span id="avatar-preview-handle" style="color:var(--color-text-muted)">@username</span>
+      </div>
+    </div>
+
+    <form id="register-form" novalidate>
+
+      <!-- Display Name -->
+      <div class="auth-form-group">
+        <label class="auth-label" for="reg-name">Full Name</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <input
+            type="text"
+            id="reg-name"
+            class="auth-input"
+            placeholder="Jane Smith"
+            autocomplete="name"
+            aria-required="true"
+            aria-describedby="reg-name-error"
+            maxlength="50"
+          />
+        </div>
+        <div class="auth-field-error" id="reg-name-error" role="alert"></div>
+      </div>
+
+      <!-- Username -->
+      <div class="auth-form-group">
+        <label class="auth-label" for="reg-handle">Username</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon" aria-hidden="true" style="font-size:15px;font-weight:600;color:var(--color-text-muted);font-family:monospace">@</span>
+          <input
+            type="text"
+            id="reg-handle"
+            class="auth-input"
+            placeholder="jane_smith"
+            autocomplete="username"
+            autocapitalize="none"
+            spellcheck="false"
+            aria-required="true"
+            aria-describedby="reg-handle-error"
+            maxlength="20"
+          />
+        </div>
+        <div class="auth-field-error" id="reg-handle-error" role="alert"></div>
+      </div>
+
+      <!-- Bio (optional) -->
+      <div class="auth-form-group">
+        <label class="auth-label" for="reg-bio">Bio <span style="font-weight:400;color:var(--color-text-muted)">(optional)</span></label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon" style="top:14px;transform:none" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+          </span>
+          <textarea
+            id="reg-bio"
+            class="auth-input"
+            placeholder="Tell the world a little about yourself..."
+            rows="2"
+            maxlength="160"
+            style="padding-top:10px;resize:vertical;min-height:60px"
+            aria-describedby="reg-bio-hint"
+          ></textarea>
+        </div>
+        <div style="font-size:11px;color:var(--color-text-muted);margin-top:4px" id="reg-bio-hint">
+          <span id="bio-char-count">0</span>/160
+        </div>
+      </div>
+
+      <!-- Avatar colour -->
+      <div class="auth-form-group">
+        <label class="auth-label">Pick a profile colour</label>
+        <div class="avatar-color-picker" role="radiogroup" aria-label="Profile colour">
+          <button type="button" class="avatar-color-swatch selected" data-color="#6c63ff" style="background:#6c63ff" aria-label="Purple" aria-pressed="true" title="Purple"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#ff6584" style="background:#ff6584" aria-label="Pink" aria-pressed="false" title="Pink"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#22c55e" style="background:#22c55e" aria-label="Green" aria-pressed="false" title="Green"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#f59e0b" style="background:#f59e0b" aria-label="Amber" aria-pressed="false" title="Amber"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#3b82f6" style="background:#3b82f6" aria-label="Blue" aria-pressed="false" title="Blue"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#ec4899" style="background:#ec4899" aria-label="Rose" aria-pressed="false" title="Rose"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#14b8a6" style="background:#14b8a6" aria-label="Teal" aria-pressed="false" title="Teal"></button>
+          <button type="button" class="avatar-color-swatch" data-color="#f97316" style="background:#f97316" aria-label="Orange" aria-pressed="false" title="Orange"></button>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="auth-form-group">
+        <label class="auth-label" for="reg-password">Password</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <input
+            type="password"
+            id="reg-password"
+            class="auth-input"
+            placeholder="At least 6 characters"
+            autocomplete="new-password"
+            aria-required="true"
+            aria-describedby="reg-password-error"
+          />
+          <button type="button" class="password-toggle" id="toggle-reg-password" aria-label="Show password">
+            <svg id="reg-eye-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="auth-field-error" id="reg-password-error" role="alert"></div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="auth-form-group">
+        <label class="auth-label" for="reg-confirm">Confirm Password</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          <input
+            type="password"
+            id="reg-confirm"
+            class="auth-input"
+            placeholder="Repeat your password"
+            autocomplete="new-password"
+            aria-required="true"
+            aria-describedby="reg-confirm-error"
+          />
+        </div>
+        <div class="auth-field-error" id="reg-confirm-error" role="alert"></div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary auth-submit-btn" id="reg-btn">
+        Create Account
+      </button>
+
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSampleData();
+      redirectIfLoggedIn();
+    });
+
+    /* ---- State ---- */
+    let selectedColor = '#6c63ff';
+
+    /* ---- Avatar colour picker ---- */
+    document.querySelectorAll('.avatar-color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        document.querySelectorAll('.avatar-color-swatch').forEach(s => {
+          s.classList.remove('selected');
+          s.setAttribute('aria-pressed', 'false');
+        });
+        swatch.classList.add('selected');
+        swatch.setAttribute('aria-pressed', 'true');
+        selectedColor = swatch.dataset.color;
+        document.getElementById('avatar-preview').style.background = selectedColor;
+      });
+    });
+
+    /* ---- Live avatar preview ---- */
+    document.getElementById('reg-name').addEventListener('input', (e) => {
+      const name = e.target.value.trim() || 'Your Name';
+      document.getElementById('avatar-preview-name').textContent = name;
+      // Update initials
+      const initials = name.split(/\s+/).filter(Boolean).map(n => n[0]).slice(0,2).join('').toUpperCase() || '?';
+      document.getElementById('avatar-preview').textContent = initials;
+      clearFormError('reg-name-error');
+      setFieldError('reg-name', false);
+    });
+
+    document.getElementById('reg-handle').addEventListener('input', (e) => {
+      const handle = e.target.value.trim() || 'username';
+      document.getElementById('avatar-preview-handle').textContent = '@' + handle;
+      clearFormError('reg-handle-error');
+      setFieldError('reg-handle', false);
+    });
+
+    /* ---- Bio char counter ---- */
+    document.getElementById('reg-bio').addEventListener('input', (e) => {
+      document.getElementById('bio-char-count').textContent = e.target.value.length;
+    });
+
+    /* ---- Password toggle ---- */
+    document.getElementById('toggle-reg-password').addEventListener('click', () => {
+      const input = document.getElementById('reg-password');
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      document.getElementById('reg-eye-icon').outerHTML = isHidden
+        ? `<svg id="reg-eye-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+        : `<svg id="reg-eye-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+      document.getElementById('toggle-reg-password').setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+
+    /* ---- Clear errors on input ---- */
+    ['reg-password', 'reg-confirm'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        clearFormError(id + '-error');
+        setFieldError(id, false);
+      });
+    });
+
+    /* ---- Form submit ---- */
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Clear all errors
+      ['reg-name','reg-handle','reg-password','reg-confirm'].forEach(id => {
+        clearFormError(id + '-error');
+        setFieldError(id, false);
+      });
+      document.getElementById('reg-error').classList.remove('visible');
+
+      const name     = document.getElementById('reg-name').value.trim();
+      const handle   = document.getElementById('reg-handle').value.trim();
+      const bio      = document.getElementById('reg-bio').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const confirm  = document.getElementById('reg-confirm').value;
+
+      let hasError = false;
+
+      // Validate name
+      if (!name) {
+        showFormError('reg-name-error', 'Full name is required.');
+        setFieldError('reg-name', true);
+        hasError = true;
+      } else if (name.length < 2) {
+        showFormError('reg-name-error', 'Name must be at least 2 characters.');
+        setFieldError('reg-name', true);
+        hasError = true;
+      }
+
+      // Validate handle
+      const handleError = validateHandle(handle);
+      if (handleError) {
+        showFormError('reg-handle-error', handleError);
+        setFieldError('reg-handle', true);
+        hasError = true;
+      } else if (handleTaken(handle)) {
+        showFormError('reg-handle-error', 'That username is already taken. Try another.');
+        setFieldError('reg-handle', true);
+        hasError = true;
+      }
+
+      // Validate password
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        showFormError('reg-password-error', passwordError);
+        setFieldError('reg-password', true);
+        hasError = true;
+      }
+
+      // Validate confirm
+      if (password && password !== confirm) {
+        showFormError('reg-confirm-error', 'Passwords do not match.');
+        setFieldError('reg-confirm', true);
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // Build new user object
+      const newUser = {
+        id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+        displayName: name,
+        handle: handle.toLowerCase(),
+        bio: bio || '',
+        followers: 0,
+        following: 0,
+        joinedDate: new Date().toISOString().slice(0, 10),
+        avatarColor: selectedColor,
+      };
+
+      // Loading state
+      const btn = document.getElementById('reg-btn');
+      btn.textContent = 'Creating account...';
+      btn.classList.add('loading');
+
+      setTimeout(() => {
+        try {
+          registerUser(newUser, password);
+          saveCurrentUser(newUser);
+          window.location.replace('index.html');
+        } catch (err) {
+          btn.textContent = 'Create Account';
+          btn.classList.remove('loading');
+          document.getElementById('reg-error-text').textContent = 'Something went wrong. Please try again.';
+          document.getElementById('reg-error').classList.add('visible');
+        }
+      }, 400);
+    });
+  </script>
+
+</body>
+</html>
