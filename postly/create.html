@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create a new post on Postly" />
+  <title>Create Post — Postly</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== MOBILE HEADER ===== -->
+  <header class="mobile-header" role="banner">
+    <div class="logo-text">Post<span>ly</span></div>
+    <div class="header-actions">
+      <div class="header-avatar" id="header-avatar" aria-label="Your profile" role="button" tabindex="0"
+        onclick="window.location.href='profile.html'">?</div>
+    </div>
+  </header>
+
+  <div class="app-wrapper">
+
+    <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar-left" aria-label="Main navigation">
+      <div class="sidebar-logo" role="banner">
+        <div class="logo-icon" aria-hidden="true">P</div>
+        <div class="logo-text">Post<span>ly</span></div>
+      </div>
+      <nav class="sidebar-nav" role="navigation" aria-label="Primary navigation">
+        <button class="nav-item" onclick="window.location.href='index.html'" aria-label="Home feed">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" aria-label="Explore">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <span>Explore</span>
+        </button>
+        <button class="nav-item" aria-label="Notifications">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+          <span>Notifications</span>
+        </button>
+        <button class="nav-item active" aria-label="Create post" aria-current="page">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          <span>Create Post</span>
+        </button>
+        <button class="nav-item" onclick="window.location.href='profile.html'" aria-label="Profile">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span>Profile</span>
+        </button>
+      </nav>
+      <div class="sidebar-user" onclick="window.location.href='profile.html'" role="button" tabindex="0">
+        <div class="user-avatar" id="sidebar-user-avatar">?</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-handle" id="sidebar-user-handle">@user</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="main-content" role="main">
+
+      <div class="page-header">
+        <button class="back-btn" onclick="window.history.back()" aria-label="Go back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <div class="page-header-info">
+          <h1 id="page-title">Create Post</h1>
+          <span id="page-subtitle">Share your thoughts with the world</span>
+        </div>
+      </div>
+
+      <div class="feed-container" style="max-width:680px">
+        <div class="create-page-card">
+
+          <!-- Author row -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+            <div id="create-author-avatar" style="width:48px;height:48px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;flex-shrink:0">?</div>
+            <div>
+              <div id="create-author-name" style="font-weight:600;font-size:15px">Loading...</div>
+              <div id="create-author-handle" style="font-size:12px;color:var(--color-text-muted)">@user</div>
+            </div>
+          </div>
+
+          <!-- Post Content -->
+          <div class="form-group">
+            <label class="form-label" for="post-content">Your Post</label>
+            <textarea id="post-content" class="form-textarea"
+              placeholder="What's on your mind? Share an idea, story, question or insight..."
+              maxlength="500" aria-label="Post content" aria-required="true"
+              aria-describedby="content-counter"></textarea>
+            <div class="char-counter-bar">
+              <div class="char-counter-progress" role="progressbar" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" aria-label="Character limit">
+                <div class="char-counter-fill" id="char-fill"></div>
+              </div>
+              <span id="content-counter" aria-live="polite" style="font-size:12px;color:var(--color-text-muted)">
+                <span id="char-count">0</span> / 500
+              </span>
+            </div>
+            <div class="error-message" id="content-error" role="alert"></div>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="form-group">
+            <label class="form-label">Add Image <span style="font-weight:400;color:var(--color-text-muted)">(optional)</span></label>
+            <label class="image-upload-label" for="post-image" id="upload-label">
+              <span class="upload-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+              </span>
+              <span>Click to upload an image</span>
+              <span style="font-size:11px;color:var(--color-text-muted)">PNG, JPG, GIF up to 5MB</span>
+            </label>
+            <input type="file" id="post-image" accept="image/*" style="display:none" aria-label="Upload post image" />
+            <div class="image-preview-wrap" id="image-preview-wrap">
+              <img id="image-preview-img" src="" alt="Post image preview" />
+              <button class="remove-image-btn" id="remove-image-btn" aria-label="Remove image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="form-actions">
+            <button class="btn btn-outline" id="cancel-btn" aria-label="Cancel and go back">Cancel</button>
+            <button class="btn btn-primary" id="submit-btn" aria-label="Publish post">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Publish Post
+            </button>
+          </div>
+        </div>
+
+        <!-- Tips card -->
+        <div style="background:var(--color-primary-light);border-radius:var(--radius-md);padding:16px;margin-top:8px">
+          <h3 style="font-size:14px;font-weight:600;color:var(--color-primary);margin-bottom:8px">Writing Tips</h3>
+          <ul style="font-size:13px;color:var(--color-text-secondary);line-height:1.8;padding-left:16px;list-style:disc">
+            <li>Add hashtags like #JavaScript to help people find your post</li>
+            <li>Ask a question to spark conversations</li>
+            <li>Keep it concise but make it valuable</li>
+            <li>Add an image to increase engagement</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== RIGHT SIDEBAR ===== -->
+    <aside class="sidebar-right" aria-label="Writing tips">
+      <section class="sidebar-section">
+        <h2 class="sidebar-section-title">Post Guidelines</h2>
+        <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.8">
+          <p style="margin-bottom:8px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Share original ideas and insights</p>
+          <p style="margin-bottom:8px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Use hashtags for discoverability</p>
+          <p style="margin-bottom:8px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Be respectful and constructive</p>
+          <p style="margin-bottom:8px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Images make posts more engaging</p>
+          <p style="margin-bottom:8px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            No spam or misleading content</p>
+          <p style="display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            No inappropriate content</p>
+        </div>
+      </section>
+
+      <section class="sidebar-section">
+        <h2 class="sidebar-section-title">Popular Topics</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="post-tag" onclick="insertTag('#JavaScript')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#JavaScript</span>
+          <span class="post-tag" onclick="insertTag('#AI')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#AI</span>
+          <span class="post-tag" onclick="insertTag('#WebDev')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#WebDev</span>
+          <span class="post-tag" onclick="insertTag('#Career')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#Career</span>
+          <span class="post-tag" onclick="insertTag('#Startup')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#Startup</span>
+          <span class="post-tag" onclick="insertTag('#Learning')" style="cursor:pointer;padding:4px 10px;background:var(--color-primary-light);border-radius:20px;font-size:13px">#Learning</span>
+        </div>
+      </section>
+    </aside>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <div class="bottom-nav-items">
+      <a class="bottom-nav-item" href="index.html" aria-label="Home">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span>Home</span>
+      </a>
+      <a class="bottom-nav-item" href="index.html" aria-label="Explore">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <span>Explore</span>
+      </a>
+      <a class="bottom-nav-item create-btn-mobile active" href="create.html" aria-label="Create" aria-current="page">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </a>
+      <a class="bottom-nav-item" href="profile.html" aria-label="Profile">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span>Profile</span>
+      </a>
+      <a class="bottom-nav-item" href="#" aria-label="Notifications" onclick="event.preventDefault();">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span>Alerts</span>
+      </a>
+    </div>
+  </nav>
+
+  <div id="toast-container" class="toast-container" role="region" aria-live="assertive"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/comments.js"></script>
+  <script>
+    const MAX_CHARS = 500;
+    let pendingImage = null;
+    let editingPostId = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSampleData();
+      const currentUser = getCurrentUser();
+      setupCreateAuthor(currentUser);
+      setupForm(currentUser);
+      checkEditMode();
+    });
+
+    function setupCreateAuthor(user) {
+      if (!user) return;
+      const color = user.avatarColor || getAvatarColor(user.id);
+      const initials = getInitials(user.displayName);
+      document.getElementById('create-author-avatar').textContent = initials;
+      document.getElementById('create-author-avatar').style.background = color;
+      document.getElementById('create-author-name').textContent = user.displayName;
+      document.getElementById('create-author-handle').textContent = '@' + user.handle;
+      document.getElementById('header-avatar').textContent = initials;
+      document.getElementById('header-avatar').style.background = color;
+      const sidebarAvatar = document.getElementById('sidebar-user-avatar');
+      if (sidebarAvatar) { sidebarAvatar.textContent = initials; sidebarAvatar.style.background = color; }
+      const sidebarName = document.getElementById('sidebar-user-name');
+      if (sidebarName) sidebarName.textContent = user.displayName;
+      const sidebarHandle = document.getElementById('sidebar-user-handle');
+      if (sidebarHandle) sidebarHandle.textContent = '@' + user.handle;
+    }
+
+    function checkEditMode() {
+      const params = new URLSearchParams(window.location.search);
+      const editId = params.get('edit');
+      if (!editId) return;
+      const post = getPostById(editId);
+      if (!post) { showToast('Post not found', 'error'); return; }
+      editingPostId = editId;
+      document.getElementById('page-title').textContent = 'Edit Post';
+      document.getElementById('page-subtitle').textContent = 'Update your post';
+      document.getElementById('submit-btn').innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Save Changes`;
+      document.getElementById('post-content').value = post.content;
+      updateCharCount(post.content.length);
+      if (post.image) {
+        pendingImage = post.image;
+        document.getElementById('image-preview-img').src = post.image;
+        document.getElementById('image-preview-wrap').classList.add('visible');
+      }
+    }
+
+    function setupForm(currentUser) {
+      const textarea = document.getElementById('post-content');
+      const errorEl = document.getElementById('content-error');
+      const imageInput = document.getElementById('post-image');
+      const imagePreviewWrap = document.getElementById('image-preview-wrap');
+      const imagePreviewImg = document.getElementById('image-preview-img');
+      const removeImageBtn = document.getElementById('remove-image-btn');
+      const submitBtn = document.getElementById('submit-btn');
+      const cancelBtn = document.getElementById('cancel-btn');
+
+      textarea.addEventListener('input', () => {
+        updateCharCount(textarea.value.length);
+        errorEl.classList.remove('visible');
+      });
+
+      imageInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          pendingImage = await readImageFile(file);
+          imagePreviewImg.src = pendingImage;
+          imagePreviewWrap.classList.add('visible');
+          document.getElementById('upload-label').style.display = 'none';
+        } catch (err) { showToast(err.message, 'error'); }
+        imageInput.value = '';
+      });
+
+      removeImageBtn.addEventListener('click', () => {
+        pendingImage = null;
+        imagePreviewWrap.classList.remove('visible');
+        imagePreviewImg.src = '';
+        document.getElementById('upload-label').style.display = '';
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        if (window.history.length > 1) window.history.back();
+        else window.location.href = 'index.html';
+      });
+
+      submitBtn.addEventListener('click', () => {
+        const text = textarea.value.trim();
+        if (!text && !pendingImage) {
+          errorEl.textContent = 'Your post cannot be empty!';
+          errorEl.classList.add('visible');
+          textarea.focus();
+          return;
+        }
+        if (text.length > MAX_CHARS) {
+          errorEl.textContent = `Too long! Max ${MAX_CHARS} characters.`;
+          errorEl.classList.add('visible');
+          return;
+        }
+        if (!currentUser) { showToast('Please log in to post', 'warning'); return; }
+
+        if (editingPostId) {
+          const posts = getPosts();
+          const post = posts.find(p => p.id === editingPostId);
+          if (post) {
+            post.content = text;
+            post.image = pendingImage || null;
+            post.tags = extractTags(text);
+            post.editedAt = new Date().toISOString();
+            savePosts(posts);
+            showToast('Post updated!', 'success');
+            setTimeout(() => window.location.href = 'post.html?id=' + editingPostId, 1000);
+          }
+        } else {
+          const newPost = {
+            id: generateId('p'),
+            authorId: currentUser.id,
+            content: text,
+            image: pendingImage || null,
+            likes: 0, comments: 0, reposts: 0,
+            createdAt: new Date().toISOString(),
+            tags: extractTags(text),
+            isRepost: false,
+          };
+          savePost(newPost);
+          showToast('Post published!', 'success');
+          setTimeout(() => window.location.href = 'index.html', 1000);
+        }
+      });
+    }
+
+    function updateCharCount(len) {
+      const charFill = document.getElementById('char-fill');
+      const charCount = document.getElementById('char-count');
+      const pct = (len / MAX_CHARS) * 100;
+      charFill.style.width = pct + '%';
+      charCount.textContent = len;
+      charFill.className = 'char-counter-fill';
+      if (pct >= 80) charFill.classList.add('warning');
+      if (pct >= 96) { charFill.classList.remove('warning'); charFill.classList.add('danger'); }
+    }
+
+    function extractTags(text) {
+      const matches = text.match(/#\w+/g);
+      return matches ? [...new Set(matches)] : [];
+    }
+
+    function insertTag(tag) {
+      const ta = document.getElementById('post-content');
+      const val = ta.value;
+      const needsSpace = val.length > 0 && !val.endsWith(' ') && !val.endsWith('\n');
+      ta.value = val + (needsSpace ? ' ' : '') + tag + ' ';
+      ta.dispatchEvent(new Event('input'));
+      ta.focus();
+    }
+  </script>
+
+</body>
+</html>

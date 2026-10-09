@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="User Profile — Postly" />
+  <title>Profile — Postly</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .profile-page .main-content { margin-right: 0; }
+    .profile-content { max-width: 680px; margin: 0 auto; padding-bottom: 80px; }
+  </style>
+</head>
+<body class="profile-page">
+
+  <!-- ===== MOBILE HEADER ===== -->
+  <header class="mobile-header" role="banner">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Go back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    </button>
+    <div class="logo-text">Post<span>ly</span></div>
+    <div class="header-avatar" id="header-avatar" aria-label="Your profile" role="button" tabindex="0"
+      onclick="window.location.href='profile.html'">?</div>
+  </header>
+
+  <div class="app-wrapper">
+
+    <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar-left" aria-label="Main navigation">
+      <div class="sidebar-logo" role="banner">
+        <div class="logo-icon">P</div>
+        <div class="logo-text">Post<span>ly</span></div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Primary navigation">
+        <button class="nav-item" onclick="window.location.href='index.html'">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <span>Explore</span>
+        </button>
+        <button class="nav-item">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+          <span>Notifications</span>
+        </button>
+        <button class="nav-item" onclick="window.location.href='create.html'">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          <span>Create Post</span>
+        </button>
+        <button class="nav-item active" aria-current="page">
+          <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span>Profile</span>
+        </button>
+      </nav>
+      <div class="sidebar-user" onclick="window.location.href='profile.html'" role="button" tabindex="0">
+        <div class="user-avatar" id="sidebar-user-avatar">?</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-handle" id="sidebar-user-handle">@user</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="main-content" role="main" style="margin-right:0">
+
+      <div class="profile-banner" id="profile-banner" role="img" aria-label="Profile banner"></div>
+
+      <div class="profile-content">
+
+        <section class="profile-info-section" aria-label="Profile information">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar" id="profile-avatar" aria-label="Profile picture">?</div>
+            </div>
+            <div id="profile-action-btns" style="display:flex;gap:8px;margin-bottom:8px"></div>
+          </div>
+          <h1 class="profile-name" id="profile-display-name">Loading...</h1>
+          <div class="profile-handle" id="profile-handle">@user</div>
+          <p class="profile-bio" id="profile-bio"></p>
+          <div class="profile-stats" role="list">
+            <div class="profile-stat" role="listitem">
+              <span class="profile-stat-value" id="stat-posts">0</span>
+              <span class="profile-stat-label">Posts</span>
+            </div>
+            <div class="profile-stat" role="listitem">
+              <span class="profile-stat-value" id="stat-followers">0</span>
+              <span class="profile-stat-label">Followers</span>
+            </div>
+            <div class="profile-stat" role="listitem">
+              <span class="profile-stat-value" id="stat-following">0</span>
+              <span class="profile-stat-label">Following</span>
+            </div>
+            <div class="profile-stat" role="listitem">
+              <span class="profile-stat-value" id="stat-likes">0</span>
+              <span class="profile-stat-label">Likes</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="profile-tabs" role="tablist" aria-label="Profile sections" id="profile-tabs-bar">
+          <button class="profile-tab active" role="tab" aria-selected="true" aria-controls="tab-posts" id="tab-btn-posts" data-tab="posts">Posts</button>
+          <button class="profile-tab" role="tab" aria-selected="false" aria-controls="tab-reposts" id="tab-btn-reposts" data-tab="reposts">Reposts</button>
+          <button class="profile-tab" role="tab" aria-selected="false" aria-controls="tab-likes" id="tab-btn-likes" data-tab="likes">Likes</button>
+        </div>
+
+        <div id="profile-feed" role="tabpanel" aria-labelledby="tab-btn-posts">
+          <div class="spinner" role="status" aria-label="Loading"></div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <div class="bottom-nav-items">
+      <a class="bottom-nav-item" href="index.html" aria-label="Home">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span>Home</span>
+      </a>
+      <a class="bottom-nav-item" href="index.html" aria-label="Explore">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <span>Explore</span>
+      </a>
+      <a class="bottom-nav-item create-btn-mobile" href="create.html" aria-label="Create">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </a>
+      <a class="bottom-nav-item active" href="profile.html" aria-label="Profile" aria-current="page">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span>Profile</span>
+      </a>
+      <a class="bottom-nav-item" href="#" aria-label="Notifications" onclick="event.preventDefault();">
+        <span class="nav-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span>Alerts</span>
+      </a>
+    </div>
+  </nav>
+
+  <div id="toast-container" class="toast-container" role="region" aria-live="assertive"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/comments.js"></script>
+  <script>
+    let profileUser = null;
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSampleData();
+      currentUser = getCurrentUser();
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get('user');
+      profileUser = userId ? getUserById(userId) : currentUser;
+
+      if (!profileUser) {
+        document.getElementById('profile-feed').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">${icon('alertTriangle')}</div>
+            <h3>User not found</h3>
+            <p>This profile doesn't exist or may have been removed.</p>
+          </div>`;
+        return;
+      }
+      renderProfile();
+      setupTabs();
+      loadPostsTab();
+    });
+
+    function renderProfile() {
+      const color = profileUser.avatarColor || getAvatarColor(profileUser.id);
+      const initials = getInitials(profileUser.displayName);
+      const isOwnProfile = currentUser && profileUser.id === currentUser.id;
+
+      document.title = `${profileUser.displayName} — Postly`;
+      document.getElementById('profile-banner').style.background =
+        `linear-gradient(135deg, ${color} 0%, #a78bfa 100%)`;
+
+      const avatarEl = document.getElementById('profile-avatar');
+      avatarEl.textContent = initials;
+      avatarEl.style.background = color;
+
+      document.getElementById('profile-display-name').textContent = profileUser.displayName;
+      document.getElementById('profile-handle').textContent = `@${profileUser.handle}`;
+      document.getElementById('profile-bio').textContent = profileUser.bio || '';
+
+      const allPosts = getPosts();
+      const userPosts = allPosts.filter(p => p.authorId === profileUser.id && !p.isRepost);
+      const totalLikes = userPosts.reduce((sum, p) => sum + (p.likes || 0), 0);
+
+      document.getElementById('stat-posts').textContent = userPosts.length;
+      document.getElementById('stat-followers').textContent = profileUser.followers || 0;
+      document.getElementById('stat-following').textContent = profileUser.following || 0;
+      document.getElementById('stat-likes').textContent = totalLikes;
+
+      const actionContainer = document.getElementById('profile-action-btns');
+      if (isOwnProfile) {
+        actionContainer.innerHTML = `
+          <button class="btn btn-outline" onclick="window.location.href='create.html'" aria-label="Create new post">
+            ${icon('edit', {size: 14})} New Post
+          </button>`;
+      } else {
+        const following = currentUser ? isFollowing(currentUser.id, profileUser.id) : false;
+        actionContainer.innerHTML = `
+          <button class="btn ${following ? 'btn-outline' : 'btn-primary'}" id="follow-profile-btn"
+            aria-label="${following ? 'Unfollow' : 'Follow'} ${escapeHtml(profileUser.displayName)}">
+            ${following
+              ? `${icon('check', {size: 14})} Following`
+              : `${icon('plusCircle', {size: 14})} Follow`}
+          </button>`;
+        document.getElementById('follow-profile-btn').addEventListener('click', () => {
+          if (!currentUser) { showToast('Log in to follow', 'warning'); return; }
+          const nowFollowing = toggleFollow(currentUser.id, profileUser.id);
+          const btn = document.getElementById('follow-profile-btn');
+          btn.innerHTML = nowFollowing
+            ? `${icon('check', {size: 14})} Following`
+            : `${icon('plusCircle', {size: 14})} Follow`;
+          btn.className = `btn ${nowFollowing ? 'btn-outline' : 'btn-primary'}`;
+          showToast(nowFollowing ? 'Now following!' : 'Unfollowed', nowFollowing ? 'success' : 'info', 2000);
+        });
+      }
+
+      if (currentUser) {
+        const cuColor = currentUser.avatarColor || getAvatarColor(currentUser.id);
+        const cuInitials = getInitials(currentUser.displayName);
+        document.getElementById('header-avatar').textContent = cuInitials;
+        document.getElementById('header-avatar').style.background = cuColor;
+        const sav = document.getElementById('sidebar-user-avatar');
+        if (sav) { sav.textContent = cuInitials; sav.style.background = cuColor; }
+        const sn = document.getElementById('sidebar-user-name');
+        if (sn) sn.textContent = currentUser.displayName;
+        const sh = document.getElementById('sidebar-user-handle');
+        if (sh) sh.textContent = '@' + currentUser.handle;
+      }
+    }
+
+    function setupTabs() {
+      document.querySelectorAll('.profile-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.profile-tab').forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          switch (tab.dataset.tab) {
+            case 'posts': loadPostsTab(); break;
+            case 'reposts': loadRepostsTab(); break;
+            case 'likes': loadLikesTab(); break;
+          }
+        });
+      });
+    }
+
+    function loadPostsTab() {
+      const feedEl = document.getElementById('profile-feed');
+      const posts = getPosts()
+        .filter(p => p.authorId === profileUser.id && !p.isRepost)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      if (posts.length === 0) {
+        feedEl.innerHTML = `
+          <div class="empty-state" style="padding:60px 20px">
+            <div class="empty-state-icon">${icon('fileText')}</div>
+            <h3>No posts yet</h3>
+            <p>${currentUser && profileUser.id === currentUser.id
+              ? "You haven't created any posts yet. Share your first idea!"
+              : `${escapeHtml(profileUser.displayName)} hasn't posted yet.`}</p>
+            ${currentUser && profileUser.id === currentUser.id
+              ? `<a href="create.html" class="btn btn-primary" style="margin-top:16px">Create Post</a>`
+              : ''}
+          </div>`;
+        return;
+      }
+      feedEl.innerHTML = '';
+      posts.forEach(post => { const card = buildPostCard(post, currentUser); if (card) feedEl.appendChild(card); });
+    }
+
+    function loadRepostsTab() {
+      const feedEl = document.getElementById('profile-feed');
+      const reposts = getPosts()
+        .filter(p => p.authorId === profileUser.id && p.isRepost)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      if (reposts.length === 0) {
+        feedEl.innerHTML = `
+          <div class="empty-state" style="padding:60px 20px">
+            <div class="empty-state-icon">${icon('repeat', {size: 40})}</div>
+            <h3>No reposts yet</h3>
+            <p>Reposted content will appear here.</p>
+          </div>`;
+        return;
+      }
+      feedEl.innerHTML = '';
+      reposts.forEach(post => { const card = buildPostCard(post, currentUser); if (card) feedEl.appendChild(card); });
+    }
+
+    function loadLikesTab() {
+      const feedEl = document.getElementById('profile-feed');
+      const likes = getLikes();
+      const likedPostIds = Object.keys(likes).filter(pid => (likes[pid] || []).includes(profileUser.id));
+      const likedPosts = getPosts()
+        .filter(p => likedPostIds.includes(p.id))
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      if (likedPosts.length === 0) {
+        feedEl.innerHTML = `
+          <div class="empty-state" style="padding:60px 20px">
+            <div class="empty-state-icon">${icon('heartEmpty')}</div>
+            <h3>No liked posts yet</h3>
+            <p>Liked posts will appear here.</p>
+          </div>`;
+        return;
+      }
+      feedEl.innerHTML = '';
+      likedPosts.forEach(post => { const card = buildPostCard(post, currentUser); if (card) feedEl.appendChild(card); });
+    }
+  </script>
+
+</body>
+</html>
